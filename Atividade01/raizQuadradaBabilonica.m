@@ -7,12 +7,12 @@ function [raiz, erro] = raizQuadradaBabilonica()
     if a < 0
         raiz = sqrt(-a) * 1i; % Calcula a raiz quadrada imaginária
         erro = 0; % Não há erro no cálculo de raízes imaginárias
-        fprintf('Raiz: %f + %fi, Erro: %f\n', real(raiz), imag(raiz), erro); % Imprime a raiz e o erro corretamente
+        fprintf('Raiz: %f + %fi, Erro: %.10f\n', real(raiz), imag(raiz), erro); % Imprime a raiz e o erro corretamente
         return;
     elseif a == 0
         raiz = 0; % A raiz quadrada de 0 é 0
         erro = 0; % Não há erro
-        fprintf('Raiz: %f, Erro: %f\n', raiz, erro); % Imprime a raiz e o erro
+        fprintf('Raiz: %f, Erro: %.10f\n', raiz, erro); % Imprime a raiz e o erro
         return;
     end
     
@@ -32,5 +32,5 @@ function [raiz, erro] = raizQuadradaBabilonica()
     end
     
     raiz = x_novo;
-    fprintf('Raiz: %f, Erro: %f\n', raiz, erro); % Imprime a raiz e o erro
+    fprintf('Raiz: %f, Erro: %.10f\n', raiz, erro); % Imprime a raiz e o erro com precisão aumentada
 end
