@@ -15,10 +15,12 @@ function T = calculaTetaRaio(x, y)
         if x(i) > 0
             teta(i) = atan(y(i)/x(i));
         elseif x(i) < 0
-            if y(i) >= 0
+            if y(i) > 0
                 teta(i) = atan(y(i)/x(i)) + pi;
-            else
+            elseif y(i) < 0
                 teta(i) = atan(y(i)/x(i)) - pi;
+            else
+                teta(i)= pi;   
             end
         else % x(i) == 0
             if y(i) > 0
