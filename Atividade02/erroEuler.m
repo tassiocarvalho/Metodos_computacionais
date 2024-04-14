@@ -5,7 +5,7 @@ valorVerdadeiro = 1.648721;
 x = 0.5;
 aproximado = 1; % Primeiro termo da série de Taylor é sempre 1 para e^x
 n = 1; % Contador para o fatorial e o termo de x^n
-epsilon = 1e-5; % Limiar de erro absoluto
+epsilon = 0.0005; % Limiar de erro absoluto
 erro = abs(valorVerdadeiro - aproximado) / valorVerdadeiro;
 
 % Tabela de resultados
