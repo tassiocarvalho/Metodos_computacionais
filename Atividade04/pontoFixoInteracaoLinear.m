@@ -31,12 +31,12 @@ function [raiz, iter] = pontoFixoInteracaoLinear()
         end
         
         % Saída dos resultados
-        fprintf('%d     %.8f     %.8f     %.8f\n', iter, xr, f(xr), ea);
+        fprintf('%d     %.6f     %.6f     %.6f\n', iter, xr, f(xr), ea);
         
         % Verificação de critérios de parada
         if ea < d
             raiz = xr;
-            fprintf('\nRaiz encontrada: %.8f\nNúmero de iterações: %d\n', raiz, iter);
+            fprintf('\nRaiz encontrada: %.6f\nNúmero de iterações: %d\n', raiz, iter);
             return;
         end
     end
