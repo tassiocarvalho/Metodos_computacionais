@@ -1,4 +1,4 @@
-function falsa_posicao_canal()
+function falsa_posicao()
     % Constantes
     g = 9.81; % m/s^2
     Q = 20;   % m^3/s
