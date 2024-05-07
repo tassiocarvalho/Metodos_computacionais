@@ -28,7 +28,7 @@ while true
     roots(end+1) = x2;
     f_values(end+1) = f(x2);
     if iter > 1
-        errors(end+1) = abs((x2 - x1) / x2);
+        errors(end+1) = abs((x2 - x1) / x2)*100;
     else
         errors(end+1) = 100;  % Não há erro na primeira iteração
     end

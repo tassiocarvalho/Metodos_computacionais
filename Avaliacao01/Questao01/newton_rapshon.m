@@ -18,35 +18,36 @@ errors = [];
 % Método de Newton-Raphson
 iter = 0;
 x = x0;
+erro_aproximado = 100;
 while true
     iter = iter + 1;
     fx = f(x);
     dfx = df(x);
     xnew = x - fx / dfx;  % Próxima aproximação
 
-    % Armazena os dados da iteração
-    iters(end+1) = iter;
-    roots(end+1) = x;
-    f_values(end+1) = fx;
+    % Calcula o erro aproximado
     if iter > 1
-        errors(end+1) = abs((xnew - x) / xnew);
-    else
-        errors(end+1) = 100;  % Não há erro na primeira iteração
+        erro_aproximado = abs((xnew - x) / xnew) * 100;
     end
+
+    % Armazena os dados da iteração
+    iters(end + 1) = iter;
+    roots(end + 1) = x;
+    f_values(end + 1) = fx;
+    errors(end + 1) = erro_aproximado;
 
     % Verifica a condição de parada
     if abs(xnew - x) < tol
+        iter = iter + 1;
+        iters(end + 1) = iter;
+        roots(end + 1) = xnew;
+        f_values(end + 1) = f(xnew);
+        errors(end + 1) = erro_aproximado;  % Mantém o erro calculado na penúltima iteração
         break;
     end
 
     x = xnew;  % Atualiza x para a nova estimativa
 end
-
-% Adiciona a última iteração
-iters(end+1) = iter + 1;
-roots(end+1) = xnew;
-f_values(end+1) = f(xnew);
-errors(end+1) = 0;  % Erro na última iteração é 0
 
 % Cria a tabela com os resultados
 T = table(iters', roots', f_values', errors', ...

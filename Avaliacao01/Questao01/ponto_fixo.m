@@ -3,7 +3,7 @@ P = 35000;    % Valor do veículo
 A = 8500;     % Pagamento anual
 n = 7;        % Número de anos
 tol = 0.00005; % Critério de parada
-i0 = 0.01;    % Palpite inicial para a taxa de juros
+i0 = 0.1;    % Palpite inicial para a taxa de juros
 
 % Definindo a função g(i)
 g = @(i) (A * (1 + i)^n - A) / (P * (1 + i)^n);

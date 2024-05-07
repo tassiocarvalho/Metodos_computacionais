@@ -30,7 +30,7 @@ while (b - a) / 2 > tol
     roots(end+1) = c;
     f_values(end+1) = f(c);
     if iter > 1
-        errors(end+1) = abs((roots(end) - roots(end-1)) / roots(end));
+        errors(end+1) = abs((roots(end) - roots(end-1)) / roots(end))*100;
     else
         errors(end+1) = 100;  % Não há erro na primeira iteração
     end
