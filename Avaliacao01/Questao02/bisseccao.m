@@ -2,7 +2,7 @@ function bisseccao()
     % Definição dos limites iniciais e tolerância
     a = 0;
     b = 100;
-    tol = 1e-5;
+    tol = 1e-3;
 
     % Definição dos parâmetros
     Pu_max = 80000;
@@ -16,18 +16,22 @@ function bisseccao()
     f = @(t) (Ps_max / (1 + ((Ps_max / P0) - 1) * exp(-ks * t))) - ...
              1.2 * (Pu_max * exp(-ku * t) + Pu_min);
     
-    % Inicialização da tabela
-    fprintf('Iteração\tLim Inf\t\tLim Sup\t\tXr\t\tf(Xr)\t\tErro Aprox\n');
+    % Inicialização da tabela com largura fixa
+    fprintf('%-10s %-15s %-15s %-15s %-15s %-15s\n', ...
+            'Iteração', 'Lim Inf', 'Lim Sup', 'Xr', 'f(Xr)', 'Erro Aprox (%)');
     
     % Inicialização do método
     iter = 0;
     xr_prev = 0;
+    erro_aprox = 100; % Definido inicialmente como 100 para a primeira iteração
+    
     while (b - a) / 2 > tol
+        % Calcular a raiz média entre os limites
         xr = (a + b) / 2;
         fa = f(a);
         fxr = f(xr);
         
-        % Atualiza os limites
+        % Atualiza os limites com base no sinal do produto fa * fxr
         if fa * fxr < 0
             b = xr;
         else
@@ -37,21 +41,18 @@ function bisseccao()
         % Cálculo do erro aproximado
         if iter > 0
             erro_aprox = abs((xr - xr_prev) / xr) * 100;
-        else
-            erro_aprox = 100;  % Indefinido na primeira iteração
         end
         
-        % Atualiza para próxima iteração
+        % Atualiza a raiz anterior para a próxima iteração
         xr_prev = xr;
         
-        % Mostra os resultados da iteração
-        fprintf('%d\t\t\t%.4f\t\t%.4f\t\t%.4f\t\t%.4f\t\t%.2f%%\n', ...
+        % Exibe os resultados da iteração com alinhamento fixo
+        fprintf('%-10d %-15.8f %-15.8f %-15.8f %-15.8f %-15.8f\n', ...
                 iter, a, b, xr, fxr, erro_aprox);
         
         iter = iter + 1;
     end
     
     % Resultado final
-    t = xr;
-    fprintf('A raiz aproximada é t = %.5f\n', t);
+    fprintf('\nA raiz aproximada é t = %.8f\n', xr);
 end

@@ -18,8 +18,9 @@ function bisseccao()
     iter = 0;
     erro = 100;
 
-    % Imprime cabeçalho da tabela
-    fprintf('Iteração\tLimite Inferior\tLimite Superior\tRaiz Aproximada\tf(xr)\t\tErro Aproximado\n');
+    % Imprime cabeçalho da tabela com largura fixa
+    fprintf('%-12s %-18s %-18s %-18s %-18s %-18s\n', ...
+            'Iteração', 'Limite Inferior', 'Limite Superior', 'Raiz Aproximada', 'f(xr)', 'Erro Aproximado (%)');
 
     % Laço principal do método da bissecção
     while erro > tolerancia && iter < max_iter
@@ -39,8 +40,8 @@ function bisseccao()
             erro = abs((xr - xr_old) / xr) * 100;
         end
 
-        % Imprime a linha da tabela
-        fprintf('%d\t\t\t%0.4f\t\t\t%0.4f\t\t\t%0.4f\t\t\t%0.4f\t\t%0.4f%%\n', ...
+        % Imprime a linha da tabela com formatação de largura fixa
+        fprintf('%-12d %-18.4f %-18.4f %-18.4f %-18.4f %-18.4f\n', ...
                 iter + 1, a, b, xr, f_xr, erro);
 
         % Prepara próxima iteração
@@ -49,7 +50,7 @@ function bisseccao()
     end
 
     % Mostra a raiz final
-    fprintf('\nA raiz encontrada é t = %0.4f s\n', xr);
+    fprintf('\nA raiz encontrada é t = %.4f s\n', xr);
 end
 
 function v = velocidade_subida(t, u, m, q, g)

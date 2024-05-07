@@ -22,8 +22,8 @@ function h = bisseccao_esfera()
     erro_aproximado = 100;
     xr_old = xl;
 
-    % Tabela de saída
-    fprintf('%-10s %-15s %-15s %-15s %-15s\n', 'Iter', 'Xl', 'Xu', 'Xr', 'f(Xr)','ErroAprox');
+    % Tabela de saída com largura fixa
+    fprintf('%-10s %-15s %-15s %-15s %-15s %-15s\n', 'Iter', 'Xl', 'Xu', 'Xr', 'f(Xr)', 'ErroAprox (%)');
 
     % Método da bissecção
     while erro_aproximado > tol
@@ -43,4 +43,5 @@ function h = bisseccao_esfera()
     
     % Resultado final
     fprintf('\nRaiz aproximada (h): %.5f\n', xr);
+    h = xr; % Retorna a raiz aproximada
 end

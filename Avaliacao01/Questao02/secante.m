@@ -2,7 +2,7 @@ function secante()
     % Definição dos valores iniciais
     x0 = 0;
     x1 = 100;
-    tol = 1e-5;
+    tol = 1e-2;
     max_iter = 1000;
 
     % Definição dos parâmetros
@@ -17,11 +17,14 @@ function secante()
     f = @(t) (Ps_max / (1 + ((Ps_max / P0) - 1) * exp(-ks * t))) - ...
              1.2 * (Pu_max * exp(-ku * t) + Pu_min);
 
-    % Inicialização da tabela
-    fprintf('Iteração\tXr\t\tf(Xr)\t\tErro Aprox\n');
+    % Inicialização da tabela com largura fixa
+    fprintf('%-10s %-15s %-15s %-15s\n', ...
+            'Iteração', 'Xr', 'f(Xr)', 'Erro Aprox (%)');
 
     % Inicialização do método
     iter = 0;
+    erro_aprox = 100;  % Inicia com 100% na primeira iteração
+
     while iter < max_iter
         fx0 = f(x0);
         fx1 = f(x1);
@@ -33,13 +36,11 @@ function secante()
         % Cálculo do erro aproximado
         if iter > 0
             erro_aprox = abs((xr - x1) / xr) * 100;
-        else
-            erro_aprox = 100;  % Indefinido na primeira iteração
         end
         
-        % Mostra os resultados da iteração
-        fprintf('%d\t\t%.4f\t\t%.4f\t\t%.2f%%\n', ...
-                iter+1, xr, fxr, erro_aprox);
+        % Mostra os resultados da iteração com largura fixa
+        fprintf('%-10d %-15.8f %-15.8f %-15.8f\n', ...
+                iter + 1, xr, fxr, erro_aprox);
         
         % Verifica a condição de parada
         if abs(fxr) < tol || abs(xr - x1) < tol
@@ -54,5 +55,5 @@ function secante()
     end
     
     % Resultado final
-    fprintf('A raiz aproximada é t = %.5f\n', xr);
+    fprintf('\nA raiz aproximada é t = %.8f\n', xr);
 end

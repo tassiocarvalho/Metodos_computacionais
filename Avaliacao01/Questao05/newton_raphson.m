@@ -15,8 +15,9 @@ function newton_raphson()
     iter = 0;
     erro = Inf;
 
-    % Imprime cabeçalho da tabela
-    fprintf('Iteração\txr - Raiz Aproximada\tf(xr)\t\tErro Aproximado\n');
+    % Imprime cabeçalho da tabela com largura fixa
+    fprintf('%-10s %-25s %-20s %-20s\n', ...
+            'Iteração', 'xr - Raiz Aproximada', 'f(xr)', 'Erro Aproximado (%)');
 
     % Laço principal do método de Newton-Raphson
     while erro > tolerancia && iter < max_iter
@@ -30,8 +31,8 @@ function newton_raphson()
         % Calcula o erro aproximado
         erro = abs((xr - xr_old) / xr) * 100;
 
-        % Imprime a linha da tabela
-        fprintf('%d\t\t%0.4f\t\t\t\t%0.4f\t\t%0.4f%%\n', ...
+        % Imprime a linha da tabela com largura fixa
+        fprintf('%-10d %-25.4f %-20.4f %-20.4f\n', ...
                 iter + 1, xr, f_xr, erro);
 
         % Prepara próxima iteração
@@ -39,7 +40,7 @@ function newton_raphson()
     end
 
     % Mostra a raiz final
-    fprintf('\nA raiz encontrada é t = %0.4f s\n', xr);
+    fprintf('\nA raiz encontrada é t = %.4f s\n', xr);
 end
 
 function v = velocidade_subida(t, u, m, q, g)
