@@ -26,7 +26,7 @@ while true
     roots(end+1) = i;
     g_values(end+1) = inew;
     if iter > 1
-        errors(end+1) = abs((inew - i) / inew);
+        errors(end+1) = abs((inew - i) / inew)*100;
     else
         errors(end+1) = 100;  % Não há erro na primeira iteração
     end
