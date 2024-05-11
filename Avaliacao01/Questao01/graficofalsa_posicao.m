@@ -1,4 +1,4 @@
-function plot_convergencia_taxa_juros()
+function plot_convergencia_falsa_posicao()
     % Parâmetros iniciais
     P = 35000;  % Valor do veículo
     A = 8500;   % Pagamento anual
@@ -14,12 +14,11 @@ function plot_convergencia_taxa_juros()
     roots = [];
     errors = [];
 
-    % Método da bissecção
+    % Método da falsa posição
     iter = 0;  % Contador de iterações
-    while (b - a) / 2 > tol
-        c = (a + b) / 2;  % Ponto médio
+    while (b - a) > tol
+        c = b - (f(b) * (b - a)) / (f(b) - f(a));  % Cálculo de c pelo método da falsa posição
         fc = f(c);
-        fa = f(a);
 
         % Armazena os dados da iteração
         roots(end+1) = c;
@@ -30,7 +29,7 @@ function plot_convergencia_taxa_juros()
         end
 
         % Atualiza os limites
-        if fa * fc < 0
+        if f(a) * fc < 0
             b = c;
         else
             a = c;
