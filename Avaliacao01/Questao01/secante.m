@@ -13,7 +13,8 @@ f = @(i) P * i * (1 + i)^n / ((1 + i)^n - 1) - A;
 iters = [];
 roots = [];
 f_values = [];
-errors = [];
+approx_errors = [];
+true_errors = [];
 
 % Método da secante
 iter = 0;
@@ -28,10 +29,11 @@ while true
     roots(end+1) = x2;
     f_values(end+1) = f(x2);
     if iter > 1
-        errors(end+1) = abs((x2 - x1) / x2)*100;
+        approx_errors(end+1) = abs((x2 - x1) / x2) * 100;
     else
-        errors(end+1) = 100;  % Não há erro na primeira iteração
+        approx_errors(end+1) = 100;  % Não há erro aproximado na primeira iteração
     end
+
     % Verifica a condição de parada
     if abs(x2 - x1) < tol
         break;
@@ -42,10 +44,16 @@ while true
     x1 = x2;  % Nova estimativa torna-se x1
 end
 
+% Cálculo do erro verdadeiro
+root_final = roots(end);  % A última raiz encontrada
+for i = 1:length(roots)
+    true_errors(i) = abs((root_final - roots(i)) / root_final) * 100;
+end
+
 % Cria a tabela com os resultados
-T = table(iters', roots', f_values', errors', ...
+T = table(iters', roots', f_values', approx_errors', ...
     'VariableNames', {'Iteração', 'xr - Raiz Aproximada', 'f(xr)', 'Erro Aproximado'});
 disp(T);
 
 % Exibe a raiz final encontrada
-fprintf('A taxa de juros estimada é: %.5f%%\n', roots(end) * 100);
+fprintf('A taxa de juros estimada é: %.5f%%\n', root_final * 100);

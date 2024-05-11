@@ -1,12 +1,12 @@
-function h = bisseccao_esfera()
+function h = bisseccao()
     % Constantes
     r = 1; % raio da esfera em metros
     ps = 200; % densidade da esfera em kg/m^3
     pw = 1000; % densidade da água em kg/m^3
     pi = 3.141592653589793;
     
-    % Função para calcular o volume submerso da esfera
-    volume_submerso = @(h) (pi * h^2 / 3) * (3 * r - h);
+    % Volume submerso da esfera
+    volume_submerso = @(h) (4/3) * pi * r^3 - (pi * h^2 / 3) * (3 * r - h);
     
     % Volume total da esfera
     volume_total = (4 / 3) * pi * r^3;

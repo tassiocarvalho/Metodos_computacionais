@@ -12,7 +12,8 @@ g = @(i) (A * (1 + i)^n - A) / (P * (1 + i)^n);
 iters = [];
 roots = [];
 g_values = [];
-errors = [];
+approx_errors = [];
+true_errors = [];
 
 % Método do ponto fixo
 iter = 0;
@@ -26,10 +27,11 @@ while true
     roots(end+1) = i;
     g_values(end+1) = inew;
     if iter > 1
-        errors(end+1) = abs((inew - i) / inew)*100;
+        approx_errors(end+1) = abs((inew - i) / inew) * 100;
     else
-        errors(end+1) = 100;  % Não há erro na primeira iteração
+        approx_errors(end+1) = 100;  % Não há erro aproximado na primeira iteração
     end
+    
     % Verifica a condição de parada
     if abs(inew - i) < tol
         break;
@@ -38,10 +40,16 @@ while true
     i = inew;  % Atualiza i para a nova estimativa
 end
 
+% Cálculo do erro verdadeiro
+final_root = roots(end);  % A última estimativa de taxa de juros encontrada
+for j = 1:length(roots)
+    true_errors(j) = abs((final_root - roots(j)) / final_root) * 100;
+end
+
 % Cria a tabela com os resultados
-T = table(iters', roots', g_values', errors', ...
+T = table(iters', roots', g_values', approx_errors',...
     'VariableNames', {'Iteração', 'i - Taxa de Juros Aproximada', 'g(i)', 'Erro Aproximado'});
 disp(T);
 
 % Exibe a taxa de juros final encontrada
-fprintf('A taxa de juros estimada é: %.5f%%\n', inew * 100);
+fprintf('A taxa de juros estimada é: %.5f%%\n', final_root * 100);

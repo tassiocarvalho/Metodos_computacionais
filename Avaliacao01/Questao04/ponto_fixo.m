@@ -1,5 +1,5 @@
-function h = ponto_fixo_esfera()
-    % Constantes
+function h = ponto_fixo()
+    % Constantesd
     r = 1; % raio da esfera
     ps = 200; % densidade da esfera (kg/m^3)
     pw = 1000; % densidade da água (kg/m^3)

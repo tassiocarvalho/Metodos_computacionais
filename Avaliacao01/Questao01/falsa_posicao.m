@@ -47,8 +47,8 @@ while (b - a) > tol
 end
 
 % Cria a tabela com os resultados
-T = table(iters', lower_bounds', upper_bounds', roots', f_values', errors', ...
-    'VariableNames', {'Iteração', 'Limite Inferior', 'Limite Superior', 'xr - Raiz Aproximada', 'f(xr)', 'Erro Aproximado'});
+T = table(iters', lower_bounds', upper_bounds', roots', f_values', ...
+    'VariableNames', {'Iteração', 'Limite Inferior', 'Limite Superior', 'xr - Raiz Aproximada', 'f(xr)'});
 disp(T);
 
 % Exibe a raiz final encontrada

@@ -3,17 +3,18 @@ P = 35000;    % Valor do veículo
 A = 8500;     % Pagamento anual
 n = 7;        % Número de anos
 tol = 0.00005;  % Critério de parada (tolerância)
-x0 = 0.1;     % Palpite inicial para a taxa de juros
+x0 = 0.01;     % Palpite inicial para a taxa de juros
 
 % Definindo a função e sua derivada
 f = @(i) P * i * (1 + i)^n / ((1 + i)^n - 1) - A;
-df = @(i) P * ((1 + i)^n * (1 + n * i) - n * i * (1 + i)^(n-1)) / ((1 + i)^(2*n) - 2 * (1 + i)^n + 1);
+df = @(i) P * ((1 + i)^n * (1 + n * i) - n * i * (1 + i)^(n - 1)) / ((1 + i)^(2 * n) - 2 * (1 + i)^n + 1);
 
 % Inicializações para armazenar os resultados de cada iteração
 iters = [];
 roots = [];
 f_values = [];
 errors = [];
+true_errors = [];
 
 % Método de Newton-Raphson
 iter = 0;
@@ -49,10 +50,16 @@ while true
     x = xnew;  % Atualiza x para a nova estimativa
 end
 
+% Cálculo do erro verdadeiro
+final_root = roots(end);  % A última estimativa de taxa de juros encontrada
+for j = 1:length(roots)
+    true_errors(j) = abs((final_root - roots(j)) / final_root) * 100;
+end
+
 % Cria a tabela com os resultados
-T = table(iters', roots', f_values', errors', ...
-    'VariableNames', {'Iteração', 'xr - Raiz Aproximada', 'f(xr)', 'Erro Aproximado'});
+T = table(iters', roots', f_values', errors', true_errors',  ...
+    'VariableNames', {'Iteração', 'xr - Raiz Aproximada', 'f(xr)', 'Erro Aproximado', 'Erro Verdadeiro' });
 disp(T);
 
 % Exibe a raiz final encontrada
-fprintf('A taxa de juros estimada é: %.5f%%\n', roots(end) * 100);
+fprintf('A taxa de juros estimada é: %.5f%%\n', final_root * 100);

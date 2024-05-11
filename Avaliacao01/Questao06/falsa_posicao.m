@@ -19,8 +19,9 @@ function falsa_posicao()
         return;
     end
     
-    % Imprime cabeçalho da tabela
-    fprintf('Iteração\tLimite Inferior\tLimite Superior\tRaiz Aproximada\tf(y)\t\tErro Aproximado\n');
+    % Imprime cabeçalho da tabela com espaçamento adequado
+    fprintf('\n%-10s %-15s %-15s %-15s %-15s %-15s\n', ...
+        'Iteração', 'Limite Inferior', 'Limite Superior', 'Raiz Aproximada', 'f(y)', 'Erro Aproximado (%)');
     
     % Método da falsa posição
     while erro > tol && iter < max_iter
@@ -40,8 +41,8 @@ function falsa_posicao()
         % Calcula erro
         erro = abs(fc);
         
-        % Imprime a linha da tabela
-        fprintf('%d\t\t\t%0.4f\t\t\t%0.4f\t\t\t%0.4f\t\t\t%0.4f\t\t%0.4f%%\n', ...
+        % Imprime os resultados de cada iteração com espaçamento adequado
+        fprintf('%-10d %-15.4f %-15.4f %-15.4f %-15.4f %-15.4f\n', ...
                 iter + 1, a, b, c, fc, erro);
         
         iter = iter + 1; % Incrementa o contador de iterações

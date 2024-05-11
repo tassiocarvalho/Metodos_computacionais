@@ -22,7 +22,7 @@ function bisseccao()
     fprintf('%-12s %-18s %-18s %-18s %-18s %-18s\n', ...
             'Iteração', 'Limite Inferior', 'Limite Superior', 'Raiz Aproximada', 'f(xr)', 'Erro Aproximado (%)');
 
-    % Laço principal do método da bissecção
+    % Laço principal do método da bisseção
     while erro > tolerancia && iter < max_iter
         xr = (a + b) / 2; % estimativa da raiz
         f_xr = velocidade_subida(xr, u, m, q, g) - v_desejada;
