@@ -64,4 +64,3 @@ end
 if iter == max_iter
     fprintf('Número máximo de iterações atingido. Método não convergiu.\n');
 end
-
