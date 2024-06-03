@@ -2,13 +2,6 @@
 A = [5 1 1; 3 4 1; 3 3 6];
 b = [5; 6; 0];
 
-% Critério de Convergência - Diagonal Dominante
-for i = 1:size(A, 1)
-    if abs(A(i,i)) < sum(abs(A(i,:))) - abs(A(i,i))
-        error('A matriz não é diagonal dominante. O método de Jacobi pode não convergir.');
-    end
-end
-
 % Inicialização
 x0 = [0; 0; 0]; % vetor inicial
 x = x0;
@@ -52,4 +45,3 @@ end
 if iter == max_iter
     fprintf('Número máximo de iterações atingido. Método não convergiu.\n');
 end
-
