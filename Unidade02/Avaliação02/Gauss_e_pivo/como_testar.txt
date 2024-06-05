@@ -1,0 +1,7 @@
+Para realizar a execução usou-se como entrada no terminal:
+A = [1 6 2 4; 3 19 4 15; 1 4 8 -12; 5 33 9 3];
+b = [8; 25; 18; 72];
+x = eliminacao_gauss(A, b);                    obs: essa chama o método com pivo
+x = eliminacao_gauss_no_pivo(A, b);    obs: essa chama o método sem pivo, o igênuo
+disp('Solução do sistema:');
+disp(x);
