@@ -8,7 +8,7 @@ function sor_method()
     x = zeros(n, 1); % Vetor inicial de zeros
     omega = 1.25; % Fator de relaxamento
     max_iter = 1000; % Máximo de iterações permitidas
-    tol = 0.001; % Tolerância para o erro relativo
+    tol = 0.01; % Tolerância para o erro relativo
     div_tol = 1e-6; % Tolerância para identificar estagnação
     stagnation_iter = 10; % Janela de iterações para checar estagnação
 

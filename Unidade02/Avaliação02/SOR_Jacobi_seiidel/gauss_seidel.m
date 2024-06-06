@@ -19,7 +19,7 @@ function gauss_seidel()
     % Inicialização
     x0 = zeros(n, 1); % vetor inicial
     x = x0;
-    tol = 0.001; % tolerância
+    tol = 0.01; % tolerância
     max_iter = 100; % número máximo de iterações
     iter = 0;
 
@@ -38,19 +38,19 @@ function gauss_seidel()
             end
             x(i) = (b(i) - sum) / A(i,i);
         end
-    
+
         % Calcular erro relativo
         rel_error = norm(x - x_old) / norm(x);
-    
+
         % Exibir resultados
         fprintf('%d\t\t %.6f\t %.6f\t %.6f\t %.6f\t %.6f\n', k, x(1), x(2), x(3), x(4), rel_error);
-    
+
         % Verificar se o erro relativo é menor que a tolerância
         if rel_error < tol
             fprintf('Convergência alcançada após %d iterações.\n', k);
             break;
         end
-    
+
         iter = k;
     end
 

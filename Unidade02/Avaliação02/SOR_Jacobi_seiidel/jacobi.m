@@ -5,7 +5,7 @@ b = [-20/35; 0; 0; -28];
 % Inicialização
 x0 = zeros(4, 1); % vetor inicial, dimensionado adequadamente para um sistema 4x4
 x = x0;
-tol = 0.001; % tolerância
+tol = 0.01; % tolerância
 max_iter = 1000; % número máximo de iterações
 n = length(b); % tamanho do vetor b, que define a dimensão do sistema
 iter = 0;
