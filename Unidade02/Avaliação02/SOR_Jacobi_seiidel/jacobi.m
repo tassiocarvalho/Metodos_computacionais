@@ -1,12 +1,12 @@
 % Sistema de Equações
-A = [5 1 1; 3 4 1; 3 3 6];
-b = [5; 6; 0];
+A = [-17/105, 1/30, 0; 1/30, -253/840, 1/8; 1/10, 1/7, 1/15];
+b = [ -20/35; 0; -28];
 
 % Inicialização
 x0 = [0; 0; 0]; % vetor inicial
 x = x0;
-tol = 0.05; % tolerância
-max_iter = 100; % número máximo de iterações
+tol = 0.001; % tolerância
+max_iter = 1000; % número máximo de iterações
 n = length(b);
 iter = 0;
 

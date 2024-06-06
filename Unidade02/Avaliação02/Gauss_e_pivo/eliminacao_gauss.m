@@ -1,4 +1,10 @@
-function x = eliminacao_gauss(A, b)
+function x = eliminacao_gauss()
+
+    % Definindo a matriz A e o vetor b
+    A = [1/10, 1/7, 1/15; -17/105, 1/30, 0; 1/30, -253/840, 1/8];
+    b = [-28; -20/35; 0];
+
+
     % Verifica se a matriz A é quadrada
     [n, m] = size(A);
     if n ~= m
@@ -7,6 +13,8 @@ function x = eliminacao_gauss(A, b)
 
     % Extende a matriz A com o vetor b
     Ab = [A, b];
+    disp('Matriz extendida A|b inicial:');
+    disp(Ab);
 
     % Processo de Eliminação de Gauss
     for k = 1:n-1
@@ -38,5 +46,8 @@ function x = eliminacao_gauss(A, b)
     x = zeros(n, 1); % Inicializa o vetor de soluções
     for i = n:-1:1
         x(i) = (Ab(i, n+1) - Ab(i, i+1:n) * x(i+1:n)) / Ab(i, i);
+        disp(['Calculando x(', num2str(i), '): ', num2str(x(i))]);
     end
 end
+
+
