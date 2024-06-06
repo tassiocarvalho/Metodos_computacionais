@@ -1,8 +1,8 @@
 function x = eliminacao_gauss_no_pivo()
 
     % Definindo a matriz A e o vetor b
-    A = [1/10, 1/7, 1/15; -17/105, 1/30, 0; 1/30, -253/840, 1/8];
-    b = [-28; -20/35; 0];
+    A = [-17/105, 1/30, 0, 1/10; 1/30, -253/840, 1/8, 1/7; 0, 1/8, -23/120, 1/15; 1/10, 1/7, 1/15, -107/210];
+    b = [-20/35; 0; 0; -28];
     % Verifica se a matriz A é quadrada
     [n, m] = size(A);
     if n ~= m
