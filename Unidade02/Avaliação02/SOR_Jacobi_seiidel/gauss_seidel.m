@@ -1,7 +1,14 @@
 function gauss_seidel()
     % Definindo a matriz A e o vetor b
-    A = [-17/105, 1/30, 0, 1/10; 1/30, -253/840, 1/8, 1/7; 0, 1/8, -23/120, 1/15; 1/10, 1/7, 1/15, -107/210];
-    b = [-20/35; 0; 0; -28];
+    A= [-17/105, 1/30, 0, 1/10, 0, 0, 0;
+    1/30, -253/840, 1/8, 1/7, 0, 0, 0;
+     0, 1/8, -23/120, 1/15, 0, 0, 0;
+    1/10, 1/7, 1/15, -107/210, 0, 0, 0;
+    0, 0, 0, 0, -30, 7, 0;
+    0, 0, 0, 0, 4, -47, 10;
+    0, 0, 0, 0, 0, 10, -50]
+
+    b= [-20/35; 0; 0; -28; 0; 0; -120]
 
     % Inicialização do tamanho de A
     n = size(A, 1);
@@ -23,8 +30,8 @@ function gauss_seidel()
     max_iter = 100; % número máximo de iterações
     iter = 0;
 
-    fprintf('Iteração\t x1\t\t x2\t\t x3\t\t x4\t\t Erro Relativo\n');
-    fprintf('-------------------------------------------------------\n');
+    fprintf('Iteração\t x1\t\t x2\t\t x3\t\t x4\t\t x5\t\t x6\t\t x7\t\tErro Relativo\n');
+    fprintf('--------------------------------------------------------------------------------------------\n');
 
     % Método de Gauss-Seidel
     for k = 1:max_iter
@@ -43,7 +50,7 @@ function gauss_seidel()
         rel_error = norm(x - x_old) / norm(x);
 
         % Exibir resultados
-        fprintf('%d\t\t %.6f\t %.6f\t %.6f\t %.6f\t %.6f\n', k, x(1), x(2), x(3), x(4), rel_error);
+        fprintf('%d\t\t %.6f\t %.6f\t %.6f\t %.6f\t %.6f\t %.6f\t %.6f\t %.6f\n', k, x(1), x(2), x(3), x(4), x(5), x(6), x(7), rel_error);
 
         % Verificar se o erro relativo é menor que a tolerância
         if rel_error < tol
@@ -53,6 +60,7 @@ function gauss_seidel()
 
         iter = k;
     end
+
 
 
     if iter == max_iter
