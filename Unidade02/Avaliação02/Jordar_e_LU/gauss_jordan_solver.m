@@ -1,14 +1,14 @@
 function gauss_jordan_solver()
     % Definindo a matriz A e o vetor b
-    A= [-17/105, 1/30, 0, 1/10, 0, 0, 0;
-    1/30, -253/840, 1/8, 1/7, 0, 0, 0;
-     0, 1/8, -23/120, 1/15, 0, 0, 0;
-    1/10, 1/7, 1/15, -107/210, 0, 0, 0;
-    0, 0, 0, 0, -30, 7, 0;
-    0, 0, 0, 0, 4, -47, 10;
-    0, 0, 0, 0, 0, 10, -50]
+    A = [-17/105, 1/30, 0, 1/10, 0, 0, 0;
+         1/30, -253/840, 1/8, 1/7, 0, 0, 0;
+         0, 1/8, -23/120, 1/15, 0, 0, 0;
+         1/10, 1/7, 1/15, -107/210, 0, 0, 0;
+         0, 0, 0, 0, -30, 7, 0;
+         0, 0, 0, 0, 4, -47, 10;
+         0, 0, 0, 0, 0, 10, -50];
+    b = [-20/35; 0; 0; -28; 0; 0; -120];
 
-    b= [-20/35; 0; 0; -28; 0; 0; -120]
     % Chamando a função gauss_jordan
     [x, A_inv] = gauss_jordan(A, b);
 
@@ -55,8 +55,7 @@ function [x, A_inv] = gauss_jordan(A, b)
             if i ~= k
                 fator = Ab(i, k);
                 Ab(i, :) = Ab(i, :) - fator * Ab(k, :);
-                disp(['Eliminando elemento da linha ', num2str(i), ', coluna ', num2str(k), ':']);
-                disp(Ab);
+                % Removido o disp para simplificar a saída
             end
         end
     end
@@ -67,3 +66,4 @@ function [x, A_inv] = gauss_jordan(A, b)
     % A matriz inversa está nas colunas n+1 a 2n de Ab
     A_inv = Ab(:, n+1:2*n);
 end
+
