@@ -1,37 +1,37 @@
 % Leia o arquivo Excel a partir da terceira linha
-file_path = 'C:\Users\tassi\OneDrive\Área de Trabalho\Documentos\Metodos_computacionais\Unidade02\Avaliação02_1\corrente_x_tensao.xlsx';
+file_path = 'C:\Users\tassi\OneDrive\Área de Trabalho\Documentos\Metodos_computacionais\Unidade02\Avaliação02_1\potencia_x_temperatura.xlsx';
 data = readtable(file_path, 'Range', 'A3:B1000', 'VariableNamingRule', 'preserve'); % Ajuste o range conforme necessário
 
-% Extraia a tensão e a corrente
-voltage = data{:, 1};
-current = data{:, 2};
+% Extraia a temperatura e a potência
+temperature = data{:, 1};
+power = data{:, 2};
 
-% Verifique e converta os dados de corrente e tensão para double, se necessário
-if iscell(current)
-    current = cellfun(@str2double, current);
+% Verifique e converta os dados de potência e temperatura para double, se necessário
+if iscell(power)
+    power = cellfun(@str2double, power);
 end
-if iscell(voltage)
-    voltage = cellfun(@str2double, voltage);
+if iscell(temperature)
+    temperature = cellfun(@str2double, temperature);
 end
 
 % Verifique se há valores ausentes ou não numéricos separadamente
-valid_voltage_indices = ~isnan(voltage); % Verifica se há valores NaN
-valid_current_indices = ~isnan(current); % Verifica se há valores NaN
+valid_temperature_indices = ~isnan(temperature); % Verifica se há valores NaN
+valid_power_indices = ~isnan(power); % Verifica se há valores NaN
 
 % Filtre os dados inválidos
-valid_indices = valid_voltage_indices & valid_current_indices;
-voltage = voltage(valid_indices);
-current = current(valid_indices);
+valid_indices = valid_temperature_indices & valid_power_indices;
+temperature = temperature(valid_indices);
+power = power(valid_indices);
 
-% Normalizar valores de tensão
-x = (voltage - min(voltage)) / (max(voltage) - min(voltage));
-y = current;
+% Normalizar valores de temperatura
+x = (temperature - min(temperature)) / (max(temperature) - min(temperature));
+y = power;
 
 % Número de pontos
 n = length(x);
 
 % Grau do polinômio
-g = 3;
+g = 2;
 
 % Número de coeficientes a determinar
 m = g + 1;
@@ -114,8 +114,8 @@ figure;
 plot(x, y, 'ko', 'MarkerFaceColor', 'k', 'DisplayName', 'Dados originais');
 hold on;
 plot(x, y_fit, 'r-', 'LineWidth', 2, 'DisplayName', sprintf('Polinômio de ordem %d (R2 = %.4f)', g, R2));
-xlabel('Tensão (normalizada)');
-ylabel('Corrente');
+xlabel('Temperatura (normalizada)');
+ylabel('Potência');
 title('Ajuste Polinomial dos Dados');
 legend('show');
 grid on;
