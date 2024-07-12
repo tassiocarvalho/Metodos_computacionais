@@ -1,5 +1,5 @@
 % Leia o arquivo Excel
-file_path = 'C:\Users\tassi\OneDrive\Área de Trabalho\Documentos\MATLAB\Metodos_computacionais\Unidade02\Avaliação02_1\corrente_x_tensao.xlsx';
+file_path = 'C:\Users\tassi\OneDrive\Área de Trabalho\Documentos\Metodos_computacionais\Unidade02\Avaliação02_1\corrente_x_tensao.xlsx';
 data = readtable(file_path, 'Range', 'A3:B1000', 'VariableNamingRule', 'preserve'); % Ajuste o range conforme necessário
 
 % Extraia a tensão e a corrente
@@ -28,9 +28,8 @@ y_vals = lagrange_interp(x_vals);
 figure;
 plot(voltage, current, 'o', 'DisplayName', 'Dados Originais');
 hold on;
-plot(x_vals, y_vals, 'r-', 'LineWidth', 2, 'DisplayName', 'Interpolação Polinomial de Lagrange');
-xlabel('Tensão');
-ylabel('Corrente');
+ylabel('Tensão');
+xlabel('Corrente');
 title('Interpolação Polinomial de Lagrange para Corrente vs Tensão');
 legend('show');
 grid on;
